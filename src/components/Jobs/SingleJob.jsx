@@ -1,13 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { removeJob } from "../../features/jobs/jobsSlice";
 // import changeJob from "../../features/jobs/jobsSlice";
 // import { changeJob } from './../../features/jobs/jobsSlice';
 
 const SingleJob = ({ job }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   // const {id, title, type, salary, deadline } =job;
   const { id, title, type, salary, deadline } = job;
+
+  const handleDelete=()=>{
+    dispatch(removeJob(id))
+  }
 
 
   return (
@@ -53,7 +58,7 @@ const SingleJob = ({ job }) => {
         </span>
 
         <span className="sm:ml-3">
-          <button type="button" className="lws-delete btn btn-danger ">
+          <button type="button" onClick={handleDelete} className="lws-delete btn btn-danger ">
             <i className="fa-solid fa-trash text-gray-300 -ml-1 mr-2"></i>
             Delete
           </button>

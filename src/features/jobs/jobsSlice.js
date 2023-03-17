@@ -6,7 +6,7 @@ const initialState = {
   isLoading: false,
   isError: false,
   error: "",
-  editing:{},
+  // editing:{},
 };
 
 
@@ -43,12 +43,12 @@ export const removeJob = createAsyncThunk(
 const jobsSlice = createSlice({
   name: "jobs",
   initialState,
-  reducers:{
-    edit: (state, action) => {
-      console.log(state)
-      state.jobs.editing = action.payload;
-    }
-  },
+  // reducers:{
+  //   edit: (state, action) => {
+  //     console.log(state)
+  //     state.jobs.editing = action.payload;
+  //   }
+  // },
   extraReducers: (builder) => {
     builder
       .addCase(fetchJobs.pending, (state) => {
@@ -101,11 +101,12 @@ const jobsSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(removeJob.fulfilled, (state, action) => {
+        console.log(action);
         state.isLoading = false;
         state.isError = false;
         
-        state.jobsData = state.jobsData.filter((job)=> job.id !== action.meta.arg);
-        // state.jobsData = state.jobsData.filter((job)=> job.id !== action.payload.id);
+        // state.jobsData = state.jobsData.filter((job)=> job.id !== action.meta.arg);
+        state.jobsData = state.jobsData.filter((job)=> job.id !== action.payload.id);
       })
       .addCase(removeJob.rejected, (state, action) => {
         state.isLoading = false;
@@ -118,6 +119,6 @@ const jobsSlice = createSlice({
 export const selectJobById = (state, id) =>state.jobs.jobsData.find(job => job.id === id);
 
 export default jobsSlice.reducer;
-export const {edit} =jobsSlice.actions;
+// export const {edit} =jobsSlice.actions;
 
 

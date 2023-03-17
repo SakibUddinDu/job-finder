@@ -1,27 +1,6 @@
 {
   "jobs": [
     {
-      "title": "Product Manager",
-      "type": "Full Time",
-      "salary": "49999903",
-      "deadline": "2023-03-17",
-      "id": 2
-    },
-    {
-      "title": "QA Engineer",
-      "type": "Full Time",
-      "salary": "15000",
-      "deadline": "2023-12-31",
-      "id": 3
-    },
-    {
-      "title": "Product Manager",
-      "type": "Remote",
-      "salary": "18000",
-      "deadline": "2023-12-31",
-      "id": 4
-    },
-    {
       "title": "Social Media Manager",
       "type": "Internship",
       "salary": "20000",
@@ -48,13 +27,6 @@
       "salary": "200000",
       "deadline": "2023-03-17",
       "id": 8
-    },
-    {
-      "title": "Full Stack Developer",
-      "type": "Full Time",
-      "salary": "200000",
-      "deadline": "2023-03-17",
-      "id": 9
     },
     {
       "title": "Software Developer",
