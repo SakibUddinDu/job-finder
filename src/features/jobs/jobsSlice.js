@@ -6,6 +6,7 @@ const initialState = {
   isLoading: false,
   isError: false,
   error: "",
+  editing:{},
 };
 
 
@@ -24,8 +25,10 @@ export const createJob = createAsyncThunk("jobs/createJob", async (formData)=>{
 
 export const changeJob = createAsyncThunk(
   "jobs/changeJob",
-  async (id, data) => {
+  // async (id, data) => {
+  async ({id, data}) => {
     const job = await editJob(id, data);
+    // console.log(job);{id:2}
     return job;
   }
 );
@@ -40,6 +43,12 @@ export const removeJob = createAsyncThunk(
 const jobsSlice = createSlice({
   name: "jobs",
   initialState,
+  reducers:{
+    edit: (state, action) => {
+      console.log(state)
+      state.jobs.editing = action.payload;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchJobs.pending, (state) => {
@@ -106,4 +115,9 @@ const jobsSlice = createSlice({
   },
 });
 
+export const selectJobById = (state, id) =>state.jobs.jobsData.find(job => job.id === id);
+
 export default jobsSlice.reducer;
+export const {edit} =jobsSlice.actions;
+
+
