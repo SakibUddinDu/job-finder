@@ -6,13 +6,15 @@ const initialState = {
   isLoading: false,
   isError: false,
   error: "",
-  // editing:{},
-};
+  salaryOrder:"",
+  searchedText:'',
 
+};
 
 // async Thunks- action creators - type and payload
 export const fetchJobs = createAsyncThunk("jobs/fetchJobs", async () => {
   const jobs = await getJobs();
+
   return jobs;
 });
 
@@ -32,6 +34,7 @@ export const changeJob = createAsyncThunk(
     return job;
   }
 );
+
 export const removeJob = createAsyncThunk(
   "jobs/removeJob",
   async (id) => {
@@ -43,12 +46,15 @@ export const removeJob = createAsyncThunk(
 const jobsSlice = createSlice({
   name: "jobs",
   initialState,
-  // reducers:{
-  //   edit: (state, action) => {
-  //     console.log(state)
-  //     state.jobs.editing = action.payload;
-  //   }
-  // },
+
+  reducers:{
+    filterBySalaryType: (state, action)=>{
+      state.salaryOrder =action.payload;
+   },
+   filterBySearchedText: (state, action)=>{
+      state.searchedText = action.payload;
+   }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchJobs.pending, (state) => {
@@ -105,8 +111,8 @@ const jobsSlice = createSlice({
         state.isLoading = false;
         state.isError = false;
         
-        // state.jobsData = state.jobsData.filter((job)=> job.id !== action.meta.arg);
-        state.jobsData = state.jobsData.filter((job)=> job.id !== action.payload.id);
+        state.jobsData = state.jobsData.filter((job)=> job.id !== action.meta.arg);
+        // state.jobsData = state.jobsData.filter((job)=> job.id !== action.payload.id);
       })
       .addCase(removeJob.rejected, (state, action) => {
         state.isLoading = false;
@@ -119,6 +125,6 @@ const jobsSlice = createSlice({
 export const selectJobById = (state, id) =>state.jobs.jobsData.find(job => job.id === id);
 
 export default jobsSlice.reducer;
-// export const {edit} =jobsSlice.actions;
+export const {filterBySalaryType, filterBySearchedText} =jobsSlice.actions;
 
 

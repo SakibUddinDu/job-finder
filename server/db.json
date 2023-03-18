@@ -8,13 +8,6 @@
       "id": 5
     },
     {
-      "title": "Android App Developer",
-      "type": "Remote",
-      "salary": "35000",
-      "deadline": "2023-12-31",
-      "id": 6
-    },
-    {
       "title": "MERN Stack Developer",
       "type": "Internship",
       "salary": "180000",
@@ -27,20 +20,6 @@
       "salary": "200000",
       "deadline": "2023-03-17",
       "id": 8
-    },
-    {
-      "title": "Software Developer",
-      "type": "Internship",
-      "salary": "4555",
-      "deadline": "2023-03-17",
-      "id": 10
-    },
-    {
-      "title": "Social Media Manager",
-      "type": "Internship",
-      "salary": "60000",
-      "deadline": "2023-03-18",
-      "id": 11
     },
     {
       "title": "Software Engineer",
