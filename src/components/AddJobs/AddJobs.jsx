@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { createJob } from "../../features/jobs/jobsSlice";
 
 const AddJobs = () => {
@@ -8,12 +9,7 @@ const AddJobs = () => {
   const [type, setType] = useState("");
   const [salary, setSalary] = useState(0);
   const [deadline, setDeadline] = useState("");
-   const reset = () => {
-    setTitle("");
-    setType("");
-    setSalary(0);
-    setDeadline("");
-  };
+ const navigate= useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,7 +21,7 @@ const AddJobs = () => {
         deadline,
       })
     );
-    reset()
+    navigate('/')
   };
  
 
@@ -135,7 +131,8 @@ export default AddJobs;
 // import React, { useEffect, useState } from "react";
 // import { useDispatch } from 'react-redux';
 // import { createJob } from "../../features/jobs/jobsSlice";
-// ==================db.json o  change kora lagbe===========3
+// import { useNavigate } from 'react-router-dom';
+// ==================db.json o  change kora lagbe===========
 
 // {
 //   "jobs": [
