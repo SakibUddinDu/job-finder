@@ -8,7 +8,7 @@ const initialState = {
   error: "",
   salaryOrder:"",
   searchedText:'',
-
+  jobType:''
 };
 
 // async Thunks- action creators - type and payload
@@ -53,7 +53,11 @@ const jobsSlice = createSlice({
    },
    filterBySearchedText: (state, action)=>{
       state.searchedText = action.payload;
-   }
+   },
+   filterByJobType: (state, action)=>{
+      state.jobType = action.payload;
+   },
+
   },
   extraReducers: (builder) => {
     builder
@@ -125,6 +129,6 @@ const jobsSlice = createSlice({
 export const selectJobById = (state, id) =>state.jobs.jobsData.find(job => job.id === id);
 
 export default jobsSlice.reducer;
-export const {filterBySalaryType, filterBySearchedText} =jobsSlice.actions;
+export const {filterBySalaryType, filterBySearchedText, filterByJobType} =jobsSlice.actions;
 
 

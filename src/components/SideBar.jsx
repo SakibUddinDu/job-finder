@@ -1,35 +1,50 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from "react-router-dom";
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { filterByJobType } from '../features/jobs/jobsSlice';
 
 const SideBar = () => {
+    const dispatch = useDispatch()
+    const [jobType, setJobType] = useState('')
+    
+    useEffect(() => {
+      dispatch(filterByJobType(jobType))
+    }, [dispatch, jobType])
+    
+
+    const handleClick=(e)=>{
+        console.log(e.target)
+        setJobType(e.target.value)
+    }
     
     return (
         <div className="sidebar">
             <nav>
                 <ul className="space-y-4">
                     <li>
-                        <a href="/jobs" className="main-menu menu-active" id="lws-alljobs-menu">
+                        <button onClick={handleClick}  value="" className="main-menu menu-active" id="lws-alljobs-menu">
                             <i className="fa-solid fa-briefcase"></i>
                             <span> All Available Jobs</span>
-                        </a>
+                        </button>
                         <ul className="space-y-6 lg:space-y-2 ">
                             <li>
-                                <a className="sub-menu" href="/jobs/internship" id="lws-internship-menu">
+                                <button  onClick={handleClick} className="sub-menu" id="lws-internship-menu" value="Internship">
                                     <i className="fa-solid fa-stop !text-[#FF5757]"></i>
                                     Internship
-                                </a>
+                                </button>
                             </li>
                             <li>
-                                <a className="sub-menu" href="/jobs/fulltime" id="lws-fulltime-menu">
+                                <button  onClick={handleClick} className="sub-menu" id="lws-fulltime-menu" value="Full Time">
                                     <i className="fa-solid fa-stop !text-[#FF8A00]"></i>
                                     Full Time
-                                </a>
+                                </button>
                             </li>
                             <li>
-                                <a className="sub-menu" href="/jobs/remote" id="lws-remote-menu">
+                                <button  onClick={handleClick}className="sub-menu" id="lws-remote-menu" value="Remote">
                                     <i className="fa-solid fa-stop !text-[#56E5C4]"></i>
                                     Remote
-                                </a>
+                                </button>
                             </li>
                         </ul>
                     </li>

@@ -9,6 +9,7 @@ const Jobs = () => {
   const jobs = useSelector((state) => state.jobs.jobsData);
   const searchedText = useSelector((state) => state.jobs.searchedText);
   const salaryOrder = useSelector((state) => state.jobs.salaryOrder);
+  const jobType = useSelector((state) => state.jobs.jobType);
 
   useEffect(() => {
     dispatch(fetchJobs());
@@ -35,15 +36,10 @@ const Jobs = () => {
             .filter((job) =>
               job.title.toLowerCase().includes(searchedText.toLowerCase())
             )
+            .filter((job)=> job.type.includes(jobType || ''))
             .map((job) => (
               <SingleJob key={job.id} job={job}></SingleJob>
             ))}
-          {/* {
-            jobs
-            .filter((job) =>job.title.toLowerCase().includes(searchedText.toLowerCase()))
-            .map((job)=><SingleJob key={job.id} job={job}></SingleJob>)
-           }  */}
-        
         </div>
       </main>
     </div>
